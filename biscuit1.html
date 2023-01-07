@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My To-Do List</title>
+    <style>
+      /* to-do list styling */
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #todo-list {
+        width: 500px;
+        margin: auto;
+        border: 1px solid #ccc;
+      }
+      #todo-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #todo-list li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      #todo-list li.completed {
+        background-color: #f4f4f4;
+      }
+      #todo-list li input[type="checkbox"] {
+        float: left;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- to-do list container -->
+    <div id="todo-list">
+      <h1>My To-Do List</h1>
+      <!-- form to add new -->
+      <form id="add-todo-form">
+        <input type="text" id="new-todo" placeholder="Add a new to-do">
+        <button type="submit">Add</button>
+      </form>
+      <!-- list to display to-do items -->
+      <ul id="todo-items"></ul>
+    </div>
+
+    <!-- Add some JavaScript for interacting with the to-do list -->
+    <script>
+      // Get references to the form and list elements
+      const form = document.getElementById('add-todo-form');
+      const list = document.getElementById('todo-items');
+
+      // Add a submit event listener to the form
+      form.addEventListener('submit', (event) => {
+        // Prevent the form from submitting
+        event.preventDefault();
+
+        // Get the value of the input field
+        const todo = document.getElementById('new-todo').value;
+
+        // Clear the input field
+        document.getElementById('new-todo').value = '';
+
+        // Add the new to-do item to the list
+        const newItem = document.createElement('li');
+        newItem.innerHTML = `<input type="checkbox">${todo}`;
+        list.appendChild(newItem);
+      });
+
+      // Add a change event listener to the list
+      list.addEventListener('change', (event) => {
+        // Get the item that was changed
+        const item = event.target.parentElement;
+
+        // Toggle the completed class on the item
+        item.classList.toggle('completed');
+      });
+    </script>
+  </body>
+</html>
